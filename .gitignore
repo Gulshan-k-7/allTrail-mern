@@ -26,3 +26,8 @@ dist-ssr
 server/config/serviceAccountKey.json
 serviceAccountKey.json
 .env
+
+# Firebase Admin credentials
+server/*firebase-adminsdk*.json
+server/serviceAccountKey.json
+.env

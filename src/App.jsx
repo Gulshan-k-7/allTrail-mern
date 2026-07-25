@@ -7,8 +7,8 @@ import Home from "./pages/Home";
 import Explore from "./pages/Explore";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
-import CreatePost from "./pages/CreatePost";
-import EditPost from "./pages/EditPost";
+// import CreatePost from "./pages/CreatePost";
+// import EditPost from "./pages/EditPost";
 
 export default function App() {
   return (
@@ -26,14 +26,14 @@ export default function App() {
             path="/profile"
             element={<Profile />}
           />
-          <Route
+          {/* <Route
             path="/posts/create"
             element={<CreatePost />}
           />
           <Route
             path="/posts/:postId/edit"
             element={<EditPost />}
-          />
+          /> */}
         </Route>
       </Routes>
     </>
