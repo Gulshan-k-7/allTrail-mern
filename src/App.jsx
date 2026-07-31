@@ -1,41 +1,83 @@
-import { Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./components/Navbar";
-import ProtectedRoute from "./components/ProtectedRoute";
 
 import Home from "./pages/Home";
 import Explore from "./pages/Explore";
-import Login from "./pages/Login";
+import Community from "./pages/Community";
+import About from "./pages/About";
 import Profile from "./pages/Profile";
-// import CreatePost from "./pages/CreatePost";
-// import EditPost from "./pages/EditPost";
+import CreatePost from "./pages/CreatePost";
 
-export default function App() {
+function App() {
+  const token = localStorage.getItem("token");
+
   return (
-    <>
-      <Navbar />
+    <BrowserRouter>
 
-      <Routes>
-        <Route path="/login" element={<Login />} />
-        <Route path="/explore" element={<Explore />} />
+      <div className="relative">
+        <Navbar />
+        <Routes>
+          {/* Default Route */}
+          <Route
+            path="/"
+            element={<Navigate to="/home" replace />}
+          />
 
-        <Route element={<ProtectedRoute />}>
-          <Route path="/" element={<Home />} />
+          {/* Public Pages */}
           <Route path="/home" element={<Home />} />
           <Route
-            path="/profile"
-            element={<Profile />}
-          />
-          {/* <Route
-            path="/posts/create"
-            element={<CreatePost />}
+            path="/explore"
+            element={<Explore />}
           />
           <Route
-            path="/posts/:postId/edit"
-            element={<EditPost />}
-          /> */}
-        </Route>
-      </Routes>
-    </>
+            path="/community"
+            element={<Community />}
+          />
+          <Route
+            path="/about"
+            element={<About />}
+          />
+
+          {/* Protected Pages */}
+          <Route
+            path="/profile"
+            element={
+              token ? (
+                <Profile />
+              ) : (
+                <Navigate
+                  to="/home"
+                  replace
+                />
+              )
+            }
+          />
+
+          <Route
+            path="/create-post"
+            element={
+              token ? (
+                <CreatePost />
+              ) : (
+                <Navigate
+                  to="/home"
+                  replace
+                />
+              )
+            }
+          />
+
+          {/* Unknown Route */}
+          <Route
+            path="*"
+            element={<Navigate to="/home" replace />}
+          />
+        </Routes>
+      </div>
+
+    </BrowserRouter>
   );
 }
+
+export default App;

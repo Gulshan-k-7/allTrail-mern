@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import LoginModal from "./loginModel";
+import Login from "./Login";
 import mountain1 from "../assets/mountain1.jpg";
 import mountain2 from "../assets/mountain2.jpg";
 import mountain3 from "../assets/mountain3.jpg";
 import mountain4 from "../assets/mountain4.jpg";
-
+import React from "react";
 
 
 function Hero() {
@@ -38,33 +38,9 @@ function Hero() {
         <section className="relative h-130 w-full overflow-hidden bg-center flex items-center justify-center">
             <nav className="absolute top-0 left-0 w-full z-50 flex items-center justify-between px-8 py-5 text-white">
 
-                {/* Logo */}
-                <Link to="/" className="text-2xl font-bold tracking-wide">
-                    Trail<span className="text-green-400">Tracker</span>
-                </Link>
 
-                {/* Login Buttons */}
-                <div className="flex items-center gap-4">
 
-                    <button
-                        onClick={() => setOpen(true)}
-                        className="hover:text-green-400 transition"
-                    >
-                        Login
-                    </button>
-                    <LoginModal
-                        open={open}
-                        onClose={() => setOpen(false)}
-                    />
 
-                    <Link
-                        to="/register"
-                        className="bg-green-500 hover:bg-green-600 px-5 py-2 rounded-full font-semibold transition"
-                    >
-                        Sign Up
-                    </Link>
-
-                </div>
 
             </nav>
             <img

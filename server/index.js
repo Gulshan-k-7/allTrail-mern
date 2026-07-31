@@ -1,64 +1,58 @@
 import express from "express";
+import mongoose from "mongoose";
 import cors from "cors";
 import dotenv from "dotenv";
-import mongoose from "mongoose";
+import path from "path";
+import { fileURLToPath } from "url";
 
-import authRoutes from "./routes/authRoute.js";
-import placesRoutes from "./routes/places.js";
 import postRoutes from "./routes/postRoutes.js";
 
 dotenv.config();
 
 const app = express();
 
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
 app.use(
     cors({
-        origin:
-            process.env.CLIENT_URL ||
-            "http://localhost:5173",
+        origin: "http://localhost:5173",
         credentials: true,
     })
 );
 
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
+
+// Make uploaded images accessible
+app.use(
+    "/uploads",
+    express.static(path.join(__dirname, "uploads"))
+);
+
+// Mount post routes
+app.use("/api/posts", postRoutes);
 
 app.get("/", (req, res) => {
     res.json({
-        message: "Server is working",
+        message: "AllTrail API is running",
     });
 });
 
-app.use("/api/auth", authRoutes);
-app.use("/api/places", placesRoutes);
-app.use("/api/posts", postRoutes);
-
 const PORT = process.env.PORT || 5000;
 
-async function startServer() {
-    try {
-        if (!process.env.MONGO_URI) {
-            throw new Error(
-                "MONGO_URI is missing from server/.env"
-            );
-        }
-
-        await mongoose.connect(process.env.MONGO_URI);
-
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => {
         console.log("MongoDB connected");
 
         app.listen(PORT, () => {
-            console.log(
-                `Server running on http://localhost:${PORT}`
-            );
+            console.log(`Server running on http://localhost:${PORT}`);
         });
-    } catch (error) {
+    })
+    .catch((error) => {
         console.error(
-            "Server startup error:",
+            "MongoDB connection error:",
             error.message
         );
-
-        process.exit(1);
-    }
-}
-
-startServer();
+    });

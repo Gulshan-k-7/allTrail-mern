@@ -10,8 +10,10 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.1",
     "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.3",
     "leaflet": "^1.9.4",
     "mongodb": "^7.5.0",
+    "multer": "^2.2.0",
     "react-leaflet": "^5.0.0"
   }
 }

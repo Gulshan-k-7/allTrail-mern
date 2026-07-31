@@ -3,7 +3,7 @@ import {
     Outlet,
     useLocation,
 } from "react-router-dom";
-
+import React from "react";
 export default function ProtectedRoute() {
     const token = localStorage.getItem("token");
     const location = useLocation();

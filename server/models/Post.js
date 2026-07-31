@@ -2,13 +2,13 @@ import mongoose from "mongoose";
 
 const postSchema = new mongoose.Schema(
     {
-        user: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "User",
+        title: {
+            type: String,
             required: true,
+            trim: true,
         },
 
-        title: {
+        location: {
             type: String,
             required: true,
             trim: true,
@@ -20,54 +20,30 @@ const postSchema = new mongoose.Schema(
             trim: true,
         },
 
-        activityType: {
-            type: String,
-            enum: [
-                "hiking",
-                "trekking",
-                "camping",
-                "cycling",
-                "walking",
-                "climbing",
-                "nature",
-            ],
+        images: {
+            type: [String],
+            required: true,
+            validate: {
+                validator(images) {
+                    return images.length >= 1 && images.length <= 6;
+                },
+                message: "A post must contain between 1 and 6 images.",
+            },
+        },
+
+        userId: {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: "User",
             required: true,
         },
 
-        location: {
-            name: {
-                type: String,
-                required: true,
-            },
-
-            latitude: {
-                type: Number,
-            },
-
-            longitude: {
-                type: Number,
-            },
-        },
-
-        images: [
-            {
-                url: String,
-                publicId: String,
-            },
-        ],
-
-        difficulty: {
+        userName: {
             type: String,
-            enum: ["easy", "moderate", "hard", "expert"],
-            default: "easy",
+            default: "Trail Explorer",
+            trim: true,
         },
 
-        distanceKm: {
-            type: Number,
-            default: 0,
-        },
-
-        duration: {
+        userPhoto: {
             type: String,
             default: "",
         },
@@ -78,10 +54,32 @@ const postSchema = new mongoose.Schema(
                 ref: "User",
             },
         ],
+
+        comments: [
+            {
+                userId: {
+                    type: mongoose.Schema.Types.ObjectId,
+                    ref: "User",
+                },
+                userName: String,
+                text: {
+                    type: String,
+                    trim: true,
+                },
+                createdAt: {
+                    type: Date,
+                    default: Date.now,
+                },
+            },
+        ],
     },
     {
         timestamps: true,
     }
 );
 
-export default mongoose.model("Post", postSchema);
+const Post =
+    mongoose.models.Post ||
+    mongoose.model("Post", postSchema);
+
+export default Post;
