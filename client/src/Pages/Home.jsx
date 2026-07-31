@@ -1,7 +1,5 @@
 import Navbar from "../Components/Navbar";
-import Hero from "../components/Hero";
-// import TrailCard from "../components/TrailCard";
-// import Footer from "../components/Footer";
+import Hero from "../Components/Hero";
 import NearbyPlaces from "../Components/nearByPlace";
 import TrailSection from "../Components/trailSection";
 import Footer from "../Components/bottom";

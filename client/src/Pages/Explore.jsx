@@ -1,5 +1,5 @@
 import { useState } from "react";
-import MapComponent from "../components/Map";
+import MapComponent from "../Components/Map";
 
 export default function Explore() {
     const [places, setPlaces] = useState([]);
