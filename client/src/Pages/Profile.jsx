@@ -15,7 +15,7 @@ import {
 } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/posts`;
 
 function Profile() {
   const navigate = useNavigate();
@@ -150,12 +150,12 @@ function Profile() {
 
   const joinedDate = user?.createdAt
     ? new Date(user.createdAt).toLocaleDateString(
-        "en-IN",
-        {
-          month: "long",
-          year: "numeric",
-        }
-      )
+      "en-IN",
+      {
+        month: "long",
+        year: "numeric",
+      }
+    )
     : null;
 
   return (
@@ -434,7 +434,7 @@ function ProfilePostCard({
 function PostImages({ post }) {
   const images =
     Array.isArray(post.images) &&
-    post.images.length > 0
+      post.images.length > 0
       ? post.images
       : post.image
         ? [post.image]
@@ -463,9 +463,8 @@ function PostImages({ post }) {
     <div className="relative h-72 overflow-hidden bg-[#dfe5dd]">
       <img
         src={getImageUrl(images[activeImage])}
-        alt={`${post.title || "Adventure"} ${
-          activeImage + 1
-        }`}
+        alt={`${post.title || "Adventure"} ${activeImage + 1
+          }`}
         className="h-full w-full object-cover transition duration-700 group-hover:scale-105"
       />
 
@@ -504,11 +503,10 @@ function PostImages({ post }) {
                   setActiveImage(index)
                 }
                 aria-label={`Show image ${index + 1}`}
-                className={`h-2 rounded-full transition ${
-                  index === activeImage
+                className={`h-2 rounded-full transition ${index === activeImage
                     ? "w-5 bg-[#e6a85c]"
                     : "w-2 bg-white/75"
-                }`}
+                  }`}
               />
             ))}
           </div>

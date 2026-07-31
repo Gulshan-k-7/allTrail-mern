@@ -36,8 +36,7 @@ export default function Login({ open, onClose }) {
                 await result.user.getIdToken(true);
 
             const apiUrl =
-                import.meta.env.VITE_API_URL ||
-                "http://localhost:5000";
+                import.meta.env.VITE_API_URL;
 
             const response = await fetch(
                 `${apiUrl}/api/auth/google`,

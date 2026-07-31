@@ -14,7 +14,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/posts`;
 
 function Community() {
     const navigate = useNavigate();
@@ -252,8 +252,8 @@ function Community() {
                                                         }
                                                         aria-label="Like post"
                                                         className={`transition hover:scale-110 ${isLiked
-                                                                ? "text-[#d9574f]"
-                                                                : "text-[#17372d]"
+                                                            ? "text-[#d9574f]"
+                                                            : "text-[#17372d]"
                                                             }`}
                                                     >
                                                         <Heart
@@ -290,8 +290,8 @@ function Community() {
                                                     }
                                                     aria-label="Save post"
                                                     className={`transition hover:scale-110 ${isSaved
-                                                            ? "text-[#cb7b32]"
-                                                            : "text-[#17372d]"
+                                                        ? "text-[#cb7b32]"
+                                                        : "text-[#17372d]"
                                                         }`}
                                                 >
                                                     <Bookmark
@@ -464,8 +464,8 @@ function PostCarousel({
                                 }
                                 aria-label={`View picture ${index + 1}`}
                                 className={`h-2 rounded-full transition ${activeImage === index
-                                        ? "w-5 bg-[#e6a85c]"
-                                        : "w-2 bg-white/70"
+                                    ? "w-5 bg-[#e6a85c]"
+                                    : "w-2 bg-white/70"
                                     }`}
                             />
                         ))}

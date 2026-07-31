@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
-const API_URL = "http://localhost:5000";
+const API_URL = `${import.meta.env.VITE_API_URL}/api/posts`;
 const MAX_IMAGES = 6;
 const MAX_FILE_SIZE = 5 * 1024 * 1024;
 
@@ -266,9 +266,9 @@ function CreatePost() {
                                                 <div
                                                     key={`${images[index]?.name}-${index}`}
                                                     className={`group relative overflow-hidden rounded-2xl bg-[#dce5dc] ${index === 0 &&
-                                                            previews.length % 2 !== 0
-                                                            ? "col-span-2"
-                                                            : ""
+                                                        previews.length % 2 !== 0
+                                                        ? "col-span-2"
+                                                        : ""
                                                         }`}
                                                 >
                                                     <img
@@ -276,9 +276,9 @@ function CreatePost() {
                                                         alt={`Selected image ${index + 1
                                                             }`}
                                                         className={`w-full object-cover ${index === 0 &&
-                                                                previews.length % 2 !== 0
-                                                                ? "h-64 sm:h-80"
-                                                                : "h-48 sm:h-56"
+                                                            previews.length % 2 !== 0
+                                                            ? "h-64 sm:h-80"
+                                                            : "h-48 sm:h-56"
                                                             }`}
                                                     />
 
@@ -339,8 +339,8 @@ function CreatePost() {
                                     }
                                     onDrop={handleDrop}
                                     className={`flex min-h-[430px] cursor-pointer flex-col items-center justify-center rounded-[1.5rem] border-2 border-dashed px-6 text-center transition duration-300 ${dragActive
-                                            ? "scale-[1.01] border-[#cb7b32] bg-[#fff7e8]"
-                                            : "border-[#245541]/25 bg-white/70 hover:border-[#cb7b32]/70 hover:bg-white"
+                                        ? "scale-[1.01] border-[#cb7b32] bg-[#fff7e8]"
+                                        : "border-[#245541]/25 bg-white/70 hover:border-[#cb7b32]/70 hover:bg-white"
                                         }`}
                                 >
                                     <div className="flex h-20 w-20 items-center justify-center rounded-3xl bg-[#173d30] text-[#e6a85c] shadow-lg">

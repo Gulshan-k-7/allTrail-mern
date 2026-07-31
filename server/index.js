@@ -10,13 +10,17 @@ import postRoutes from "./routes/postRoutes.js";
 dotenv.config();
 
 const app = express();
-
+const allowedOrigins = [
+    "http://localhost:5173",
+    process.env.FRONTEND_URL,
+];
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
+
 app.use(
     cors({
-        origin: "http://localhost:5173",
+        origin: allowedOrigins,
         credentials: true,
     })
 );
