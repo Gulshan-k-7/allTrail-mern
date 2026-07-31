@@ -2,12 +2,12 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 import Navbar from "./Components/Navbar";
 
-import Home from "./pages/Home";
-import Explore from "./pages/Explore";
-import Community from "./pages/Community";
-import About from "./pages/About";
-import Profile from "./pages/Profile";
-import CreatePost from "./pages/CreatePost";
+import Home from "./Pages/Home";
+import Explore from "./Pages/Explore";
+import Community from "./Pages/Community";
+import About from "./Pages/About";
+import Profile from "./Pages/Profile";
+import CreatePost from "./Pages/CreatePost";
 
 function App() {
   const token = localStorage.getItem("token");
