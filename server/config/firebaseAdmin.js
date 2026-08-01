@@ -11,5 +11,7 @@ if (!admin.apps.length) {
     credential: admin.credential.cert(serviceAccount),
   });
 }
-export {adminAuth};
+
+export const adminAuth = admin.auth();
+
 export default admin;
